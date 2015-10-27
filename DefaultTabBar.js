@@ -10,6 +10,7 @@ var {
   Animated,
 } = React;
 
+var { Icon, } = require('react-native-icons');
 var deviceWidth = Dimensions.get('window').width;
 
 var styles = StyleSheet.create({
@@ -17,19 +18,15 @@ var styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: 10,
+    paddingBottom: 4,
   },
 
   tabs: {
-    height: 50,
+    height: 40,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: 20,
-    borderWidth: 1,
-    borderTopWidth: 0,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
     borderBottomColor: '#ccc',
+    backgroundColor: '#1E1D23',
   },
 });
 
@@ -46,7 +43,7 @@ var DefaultTabBar = React.createClass({
     return (
       <TouchableOpacity style={[styles.tab]} key={name} onPress={() => this.props.goToPage(page)}>
         <View>
-          <Text style={{color: isTabActive ? 'navy' : 'black', fontWeight: isTabActive ? 'bold' : 'normal'}}>{name}</Text>
+          <Icon name={name} size={30} color={isTabActive ? '#3498db' : 'grey'} style={{width: 30, height: 30,}} />
         </View>
       </TouchableOpacity>
     );
@@ -58,7 +55,7 @@ var DefaultTabBar = React.createClass({
       position: 'absolute',
       width: deviceWidth / numberOfTabs,
       height: 4,
-      backgroundColor: 'navy',
+      backgroundColor: '#3498db',
       bottom: 0,
     };
 

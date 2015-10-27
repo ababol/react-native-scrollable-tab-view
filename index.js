@@ -106,15 +106,15 @@ var ScrollableTabView = React.createClass({
 
     return (
       <View style={{flex: 1}}>
-        {this.renderTabBar({goToPage: this.goToPage,
-                            tabs: this.props.children.map((child) => child.props.tabLabel),
-                            activeTab: this.state.currentPage,
-                            scrollValue: this.state.scrollValue})}
-
         <Animated.View style={[sceneContainerStyle, {transform: [{translateX}]}]}
           {...this._panResponder.panHandlers}>
           {this.props.children}
         </Animated.View>
+
+        {this.renderTabBar({goToPage: this.goToPage,
+                            tabs: this.props.children.map((child) => child.props.tabLabel),
+                            activeTab: this.state.currentPage,
+                            scrollValue: this.state.scrollValue})}
       </View>
     );
   }

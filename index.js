@@ -114,7 +114,11 @@ var ScrollableTabView = React.createClass({
         {this.renderTabBar({goToPage: this.goToPage,
                             tabs: this.props.children.map((child) => child.props.tabLabel),
                             activeTab: this.state.currentPage,
-                            scrollValue: this.state.scrollValue})}
+                            scrollValue: this.state.scrollValue,
+                            navBarStyle: this.props.navBarStyle,
+                            tabStyle: this.props.tabStyle,
+                            tabUnderlineStyle: this.props.tabUnderlineStyle,
+                            tabInactiveColor: this.props.tabInactiveColor})}
       </View>
     );
   }

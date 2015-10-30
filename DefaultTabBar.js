@@ -39,7 +39,11 @@ var DefaultTabBar = React.createClass({
   propTypes: {
     goToPage: React.PropTypes.func,
     activeTab: React.PropTypes.number,
-    tabs: React.PropTypes.array
+    tabs: React.PropTypes.array,
+    navBarStyle: React.PropTypes.object,
+    tabStyle: React.PropTypes.object,
+    tabUnderlineStyle: React.PropTypes.object,
+    tabInactiveColor: React.PropTypes.string,
   },
 
   renderTabOption(name, page) {
@@ -69,12 +73,13 @@ var DefaultTabBar = React.createClass({
   },
 
   render() {
+    var self = this;
     var numberOfTabs = this.props.tabs.length;
     var tabUnderlineStyle = {
       position: 'absolute',
       width: deviceWidth / numberOfTabs,
       height: 4,
-      backgroundColor: 'navy',
+      backgroundColor: this.props.tabUnderlineStyle ? this.props.tabUnderlineStyle.backgroundColor : 'navy',
       bottom: 0,
     };
 
@@ -85,7 +90,7 @@ var DefaultTabBar = React.createClass({
     return (
       <View style={[styles.tabs, this.props.navBarStyle]}>
         {this.props.tabs.map((tab, i) => this.renderTabOption(tab, i))}
-        <Animated.View style={[tabUnderlineStyle, {left}, this.props.tabUnderlineStyle]} />
+        <Animated.View style={[tabUnderlineStyle, {left}, self.props.tabUnderlineStyle]} />
       </View>
     );
   },

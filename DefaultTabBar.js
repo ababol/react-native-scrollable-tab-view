@@ -26,8 +26,13 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     borderBottomColor: '#ccc',
-    backgroundColor: '#1E1D23',
+    backgroundColor: 'white',
   },
+
+  icon: {
+    width: 30,
+    height: 30,
+  }
 });
 
 var DefaultTabBar = React.createClass({
@@ -40,10 +45,24 @@ var DefaultTabBar = React.createClass({
   renderTabOption(name, page) {
     var isTabActive = this.props.activeTab === page;
 
+    var tabActiveColor = 'navy';
+    if (this.props.tabUnderlineStyle) {
+      tabActiveColor = this.props.tabUnderlineStyle.backgroundColor || 'navy';
+    }
+    var tabInactiveColor = this.props.tabInactiveColor || 'grey';
+    var iconSize = 30;
+    if (this.props.tabStyle) {
+      iconSize = this.props.tabStyle.height || 30;
+    }
+
     return (
-      <TouchableOpacity style={[styles.tab]} key={name} onPress={() => this.props.goToPage(page)}>
+      <TouchableOpacity style={[styles.tab, this.props.tabStyle]} key={name} onPress={() => this.props.goToPage(page)}>
         <View>
-          <Icon name={name} size={30} color={isTabActive ? '#3498db' : 'grey'} style={{width: 30, height: 30,}} />
+          <Icon
+            name={name}
+            size={iconSize}
+            color={isTabActive ? tabActiveColor : tabInactiveColor}
+            style={[styles.icon, this.props.iconStyle]} />
         </View>
       </TouchableOpacity>
     );
@@ -55,7 +74,7 @@ var DefaultTabBar = React.createClass({
       position: 'absolute',
       width: deviceWidth / numberOfTabs,
       height: 4,
-      backgroundColor: '#3498db',
+      backgroundColor: 'navy',
       bottom: 0,
     };
 
@@ -64,9 +83,9 @@ var DefaultTabBar = React.createClass({
     });
 
     return (
-      <View style={styles.tabs}>
+      <View style={[styles.tabs, this.props.navBarStyle]}>
         {this.props.tabs.map((tab, i) => this.renderTabOption(tab, i))}
-        <Animated.View style={[tabUnderlineStyle, {left}]} />
+        <Animated.View style={[tabUnderlineStyle, {left}, this.props.tabUnderlineStyle]} />
       </View>
     );
   },

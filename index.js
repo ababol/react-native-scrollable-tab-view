@@ -117,7 +117,8 @@ var ScrollableTabView = React.createClass({
                             scrollValue: this.state.scrollValue,
                             navBarStyle: this.props.navBarStyle,
                             tabStyle: this.props.tabStyle,
-                            tabUnderlineStyle: this.props.tabUnderlineStyle,
+                            iconSize: this.props.iconSize,
+                            tabActiveColor: this.props.tabActiveColor,
                             tabInactiveColor: this.props.tabInactiveColor})}
       </View>
     );
